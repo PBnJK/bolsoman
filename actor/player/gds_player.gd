@@ -63,13 +63,14 @@ func _switch_states(new_state: int) -> int:
 		States.IDLE:
 			animation_player.play("Blink")
 		States.WALK:
-			if not animation_player.current_animation == "Walk":
+			if state == States.RUN:
+				animation_player.play("Walk")
+			elif not animation_player.current_animation == "Walk":
 				animation_player.play("InchWalk")
 		States.RUN:
 			animation_player.play("Run")
 	
 	return new_state
-
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "InchWalk":
